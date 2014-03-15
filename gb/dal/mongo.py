@@ -9,7 +9,9 @@ _MONGODB_DATABASE_HOST = \
     'mongodb://%s:%s@%s:%s/%s' \
     % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_PORT, _MONGODB_NAME)
 
+
 from bootstrap import menus, items, clients
+from orders import OrdersDAO
 
 class MongoOrdersDAO(OrdersDAO):
 
