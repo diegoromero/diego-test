@@ -34,6 +34,7 @@ INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
 )
@@ -57,8 +58,12 @@ WSGI_APPLICATION = 'hellodjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django_mongodb_engine',
+        'NAME': 'app23051257',
+        'USER': 'heroku',
+        'PASSWORD': '67qXAWeeMw9GcsWbz9pCxC2N5aSZrblkTJrTVFj4csM6IUqF0cepykkVbOhENY1RYJ1Hc5Xu',
+        'HOST': 'mongodb://linus.mongohq.com/app23051257'
+        'PORT': 10000,
     }
 }
 
