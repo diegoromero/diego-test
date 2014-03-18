@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'hellodjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.dummy',
         'NAME': '',
         'USER': '',
         'PASSWORD': '',
