@@ -1,1 +1,1 @@
-web: gunicorn geekbar.wsgi
+web: gunicorn hellodjango.wsgi
