@@ -12,3 +12,18 @@ from dal import mongo
 # only enable this in a dev/test environment - never in production
 # dao = test.TestOrdersDAO()
 dao = mongo.MongoOrdersDAO(bootstrap=True)
+
+# Rendering
+from render import menu, order
+
+render_menu = menu.render_tree_menu
+
+customer_mods = [
+    order.bill_orders_modifier,
+    order.verbose_item_decorator
+]
+server_mods = [
+    order.searchable_list_modifier,
+    order.list_filter_decorator,
+    order.verbose_item_decorator
+]
