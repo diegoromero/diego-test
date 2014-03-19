@@ -155,9 +155,6 @@ TEMPLATE_LOADERS = (
 )
 
 #Storage on S3 settings are stored as os.environs to keep settings.py clean
-DEFAULT_FILE_STORAGE = 'hellodjango.s3utils.MediaRootS3BotoStorage'
-STATICFILES_STORAGE = 'hellodjango.s3utils.StaticRootS3BotoStorage'
-
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
