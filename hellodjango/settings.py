@@ -155,10 +155,15 @@ TEMPLATE_LOADERS = (
 )
 
 #Storage on S3 settings are stored as os.environs to keep settings.py clean 
+DEFAULT_FILE_STORAGE = 'diego-test.hellodjango.s3utils.MediaS3BotoStorage' 
+STATICFILES_STORAGE = 'diego-test.hellodjango.s3utils.StaticS3BotoStorage'
 
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = S3_URL
+STATIC_DIRECTORY = '/static/'
+MEDIA_DIRECTORY = '/media/'
+STATIC_URL = S3_URL + STATIC_DIRECTORY
+MEDIA_URL = S3_URL + MEDIA_DIRECTORY
