@@ -2,8 +2,8 @@ import mongoengine
 _MONGODB_USER = 'heroku'
 _MONGODB_PASSWD = '67qXAWeeMw9GcsWbz9pCxC2N5aSZrblkTJrTVFj4csM6IUqF0cepykkVbOhENY1RYJ1Hc5Xu'
 _MONGODB_HOST = 'oceanic.mongohq.com'
-_MONGODB_NAME = 'app23051257'
-_MONGODB_PORT = '10000'
+_MONGODB_NAME = 'app23079712'
+_MONGODB_PORT = '10010'
 _MONGODB_DATABASE_HOST = \
     'mongodb://%s:%s@%s:%s/%s' \
     % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_PORT, _MONGODB_NAME)
@@ -14,17 +14,10 @@ mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+# Django settings for geekbar project.
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't4+)@&$%h&7&k&_xwj-jsdu)au&9(tk@b%vh$i1z24jd(v)he)'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Diego Romero', 'diego.romerop@gmail.com'),
@@ -32,14 +25,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-
-ALLOWED_HOSTS = []
-
-
-# Application definition
-
 INSTALLED_APPS = (
-    #'django.contrib.admin',
     'django.contrib.auth',
     'mongoengine.django.mongo_auth',
     'django.contrib.contenttypes',
@@ -47,7 +33,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gb',
+    'orders',
 )
 
 AUTH_USER_MODEL = 'mongo_auth.MongoUser'
@@ -55,12 +41,13 @@ AUTH_USER_MODEL = 'mongo_auth.MongoUser'
 MONGOENGINE_USER_DOCUMENT = 'mongoengine.django.auth.User'
 
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # Uncomment the next line for simple clickjacking protection:
+    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 SESSION_ENGINE = 'mongoengine.django.sessions'
@@ -70,31 +57,30 @@ AUTHENTICATION_BACKENDS = (
     'mongoengine.django.auth.MongoEngineBackend',
 )
 
-ROOT_URLCONF = 'hellodjango.urls'
+ROOT_URLCONF = 'geekbar.urls'
 
-WSGI_APPLICATION = 'hellodjango.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
+# Python dotted path to the WSGI application used by Django's runserver.
+WSGI_APPLICATION = 'geekbar.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.dummy',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.dummy'
     }
 }
 
-# Internationalization
-# https://docs.djangoproject.com/en/1.6/topics/i18n/
+# Hosts/domain names that are valid for this site; required if DEBUG is False
+# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
+ALLOWED_HOSTS = []
 
-LANGUAGE_CODE = 'en-us'
-
+# Local time zone for this installation. Choices can be found here:
+# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
+# although not all choices may be available on all operating systems.
+# In a Windows environment this must be set to your system time zone.
 TIME_ZONE = 'America/Caracas'
+
+# Language code for this installation. All choices can be found here:
+# http://www.i18nguy.com/unicode/language-identifiers.html
+LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
@@ -124,9 +110,8 @@ MEDIA_URL = ''
 # Example: "/var/www/example.com/static/"
 STATIC_ROOT = ''
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.6/howto/static-files/
-
+# URL prefix for static files.
+# Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
 # Additional locations of static files
@@ -136,6 +121,7 @@ STATICFILES_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'static'),
 )
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -144,9 +130,76 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
+# Make this unique, and don't share it with anybody.
+SECRET_KEY = '2+e6b#=jct8+97*=z67rk@o#*uw#lk%js=4qs%e3j!*c4(#ddg'
+
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 #     'django.template.loaders.eggs.Loader',
 )
+
+
+
+
+
+TEMPLATE_DIRS = (
+    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
+
+
+
+
+# A sample logging configuration. It sends an email to the site admins
+# on every HTTP 500 error when DEBUG=False.  It also logs all INFO
+# logs to a log file and all DEBUG logs to the console (useful during
+# development). See
+# http://docs.djangoproject.com/en/dev/topics/logging for more details
+# on how to customize your logging configuration.
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'basic': {
+            'format':'[%(asctime)s] %(levelname)s %(module)s %(funcName)s %(message)s'
+        }
+    },
+    'filters': {
+        'require_debug_false': {
+            '()': 'django.utils.log.RequireDebugFalse'
+        }
+    },
+    'handlers': {
+        'mail_admins': {
+            'level': 'ERROR',
+            'filters': ['require_debug_false'],
+            'class': 'django.utils.log.AdminEmailHandler'
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'basic'
+        },
+        'logfile': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': 'geekbar.log',
+            'formatter': 'basic'
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['mail_admins'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'orders': {
+            'handlers': ['console'],
+            'level': 'DEBUG'
+        }
+    }
+}

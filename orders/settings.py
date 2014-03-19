@@ -1,5 +1,5 @@
 # import the data access layer (DAL)
-from dal import mongo
+from dal import mongo, test
 
 # DB access config. This data access object (DAO) will be used for all
 # DB access in the orders app. This allows us to transparently change

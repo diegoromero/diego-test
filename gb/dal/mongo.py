@@ -12,6 +12,7 @@ _MONGODB_DATABASE_HOST = \
 
 from bootstrap import menus, items, clients
 from orders import OrdersDAO
+from mongoengine.django.auth import User
 
 class MongoOrdersDAO(OrdersDAO):
 
@@ -21,6 +22,7 @@ class MongoOrdersDAO(OrdersDAO):
         if bootstrap:
             # load bootstrap data
             self.db.user.remove()
+            User.create_user(username='c0', email='c@0.com', password='c0')
             self.db.menus.remove()
             self.db.menus.insert(menus)
             self.db.items.remove()
