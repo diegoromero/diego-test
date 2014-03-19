@@ -154,9 +154,11 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
-#Storage on S3 settings are stored as os.environs to keep settings.py clean 
-DEFAULT_FILE_STORAGE = 'diego-test.hellodjango.s3utils.MediaS3BotoStorage' 
-STATICFILES_STORAGE = 'diego-test.hellodjango.s3utils.StaticS3BotoStorage'
+#Storage on S3 settings are stored as os.environs to keep settings.py clean
+from storages.backends.s3boto import S3BotoStorage
+
+DEFAULT_FILE_STORAGE = S3BotoStorage(location='static') 
+STATICFILES_STORAGE = S3BotoStorage(location='media')
 
 AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
