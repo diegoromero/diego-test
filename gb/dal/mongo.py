@@ -44,6 +44,13 @@ class MongoOrdersDAO(OrdersDAO):
             menus[-1]['id'] = str(menus[-1]['_id'])
         return menus
 
+    def get_item(self, item_id):
+        '''Get the specified item from the DB'''
+        mongo_id = get_mongo_id(item_id)
+        item = self.db.items.find_one({'_id':mongo_id})
+        item['id'] = item['_id']
+        return item
+
 def get_mongo_id(iid):
     try:
         mongo_id = ObjectId(iid)
