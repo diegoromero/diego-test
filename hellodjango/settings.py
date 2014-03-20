@@ -164,3 +164,5 @@ S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATIC_DIRECTORY = 'static/'
 STATIC_URL = S3_URL + STATIC_DIRECTORY
 MEDIA_URL = S3_URL + 'media/'
+from S3 import CallingFormat
+AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
