@@ -13,6 +13,7 @@ _MONGODB_DATABASE_HOST = \
 from bootstrap import menus, items, clients
 from orders import OrdersDAO
 from mongoengine.django.auth import User
+from bson.objectid import ObjectId
 
 class MongoOrdersDAO(OrdersDAO):
 
@@ -29,3 +30,23 @@ class MongoOrdersDAO(OrdersDAO):
             self.db.items.insert(items)
             self.db.clients.remove()
             self.db.clients.insert(clients)
+
+    def get_client_menus_list(self, client_id):
+        '''Gets the list of menus from the client'''
+        return self.db.clients.find_one({'_id': client_id})['menus']
+            
+    def get_client_menus(self, client_id):
+        '''Gets all the content of all the menus of the client'''
+        menus_list = self.get_client_menus_list(client_id)
+        menus = []
+        for menu in menus_list:
+            menus.append(self.db.menus.find_one({'_id': get_mongo_id(menu)}))
+            menus[-1]['id'] = str(menus[-1]['_id'])
+        return menus
+
+def get_mongo_id(iid):
+    try:
+        mongo_id = ObjectId(iid)
+    except pymongo.errors.InvalidId:
+        mongo_id = iid
+    return mongo_id
