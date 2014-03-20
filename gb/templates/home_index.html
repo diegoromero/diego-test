@@ -11,4 +11,14 @@
 		<p>Hello</p>
 		<div id="jstree-test-old"></div>
 	</body>
+	<script type='text/javascript'>
+
+		var jmenus = {{ json_menus|safe }};
+		var menus = new Array();
+		var a = 0;
+		for (var i=0; i<jmenus.length; i++){
+			menus[i] = eval("(" + jmenus[i] + ')');
+		};
+
+	</script>
 </html>
