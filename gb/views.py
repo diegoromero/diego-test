@@ -8,7 +8,8 @@ def home(request):
     menus = dao.get_client_menus('c0')
     return render(request, 'home_index.html',
                   {'title': 'Welcome',
-                   'menus': menus})
+                   'menus': menus,
+                   'json_menus': mongo2jstree_list(menus)})
 
 ####################
 # Helper functions #
