@@ -10,6 +10,17 @@
 	<body>
 		<p>Hello</p>
 		<div id="jstree-test-old"></div>
+		
+		<input type="file" id="file" onchange="s3_upload();"/>
+		<p id="status">Please select a file</p>
+		<div id="preview"><img src="/static/default.png"  /></div>
+		
+		<form method="POST" action="/submit_form/">
+			<input type="hidden" id="avatar_url" name="avatar_url" value="/static/default.png" />
+			<input type="text" name="username" placeholder="Username" /><br />
+			<input type="text" name="full_name" placeholder="Full name" /><br /><br />
+			<input type="submit" value="Update profile" />
+		</form>
 	</body>
 	<script type='text/javascript'>
 
