@@ -2,6 +2,7 @@ from django.db import models
 from mongoengine import *
 from mongoengine.django.auth import User as MongoEngineUser
 from django.utils.translation import ugettext_lazy as _
+from django.core.files.storage import default_storage as s3_storage
 
 class User(MongoEngineUser):
 
@@ -10,4 +11,4 @@ class User(MongoEngineUser):
                        unique=True)
 
 class Document(models.Model):
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+    docfile = models.FileField(storage=s3_storage, upload_to='media')
