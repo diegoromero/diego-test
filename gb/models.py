@@ -8,3 +8,7 @@ class User(MongoEngineUser):
     #custom fields
     email = EmailField(verbose_name=_('e-mail address'),
                        unique=True)
+
+class Resume(models.Model):
+    pdf = models.FileField(upload_to='pdfs')
+    photo = models.ImageField(upload_to='photos')
