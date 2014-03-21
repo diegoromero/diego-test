@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import simplejson
+from django.conf import settings
 
 from settings import dao
 from models import Document

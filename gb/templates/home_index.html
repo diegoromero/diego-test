@@ -11,7 +11,9 @@
 		<p>Hello</p>
 		<div id="jstree-test-old"></div>
 		
-		<form action="{% url "gb.views.home" %}" method="post">
+		<p>{{ test }}</p>
+		
+		<form action="" method="post">
 			{% csrf_token %}
 			<p>{{ form.non_field_errors }}</p>
 			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
