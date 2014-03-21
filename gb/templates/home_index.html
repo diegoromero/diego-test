@@ -11,13 +11,15 @@
 		<p>Hello</p>
 		<div id="jstree-test-old"></div>
 		
-		
-		<form method="POST" action="">
-			<table>
-				{{ item_form.as_table }}
-			</table>
+		<form action="{% url "gb.views.home" %}" method="post">
 			{% csrf_token %}
-			<input type="submit" value="Submit">
+			<p>{{ form.non_field_errors }}</p>
+			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+			<p>
+				{{ form.docfile.errors }}
+				{{ form.docfile }}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
 		</form>
 	</body>
 	<script type='text/javascript'>

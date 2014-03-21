@@ -2,19 +2,19 @@ from django.shortcuts import render, redirect
 from django.utils import simplejson
 
 from settings import dao
-from models import Resume
-from forms import ResumeForm
+from models import Document
+from forms import DocumentForm
 
 # Create your views here.
 def home(request):
     '''Home view with a signin and singup form'''
     if request.method == 'POST':
-        form = ResumeForm(request.POST, request.FILES)
+        form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newresume = Resume(pdf = request.FILES['pdf'], photo = request.FILES['photo'])
-            newresume.save()
+            newdoc = Document(docfile = request.FILES['docfile'])
+            newdoc.save()
     else:
-        form = ResumeForm()
+        form = DocumentForm()
     menus = dao.get_client_menus('c0')
     return render(request, 'home_index.html',
                   {'title': 'Welcome',

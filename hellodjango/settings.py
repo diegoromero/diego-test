@@ -155,9 +155,9 @@ TEMPLATE_LOADERS = (
 )
 
 #Storage on S3 settings are stored as os.environs to keep settings.py clean
-AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
-AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
-AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
+AWS_STORAGE_BUCKET_NAME = 'diego-test_bucket'
+AWS_ACCESS_KEY_ID = 'AKIAJWFJHFNFVUNMWQ3A'
+AWS_SECRET_ACCESS_KEY = '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'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
