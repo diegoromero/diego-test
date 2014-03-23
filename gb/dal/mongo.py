@@ -9,7 +9,7 @@ _MONGODB_DATABASE_HOST = \
     'mongodb://%s:%s@%s:%s/%s' \
     % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_PORT, _MONGODB_NAME)
 
-from django.conf.settings import _MONGODB
+from django.conf import settings
 from bootstrap import menus, items, clients
 from orders import OrdersDAO
 from mongoengine.django.auth import User
@@ -18,7 +18,7 @@ from bson.objectid import ObjectId
 class MongoOrdersDAO(OrdersDAO):
 
     def __init__(self, bootstrap=True):
-        self.db = _MONGODB
+        self.db = settings._MONGODB
         if bootstrap:
             # load bootstrap data
             self.db.user.remove()
