@@ -6,14 +6,32 @@ from settings import dao
 from models import Document
 from forms import DocumentForm
 
+from boto.s3.connection import S3Connection
+from boto.s3.key import Key
+import mimetypes
+
 # Create your views here.
 def home(request):
+    def store_in_s3(filename, content):
+        conn = S3Connection(settings.AWS_ACCESS_KEY_ID, settings.AWS_SECRET_ACCESS_KEY)
+        b = conn.get_bucket(settings.AWS_STORAGE_BUCKET_NAME)
+        mime = mimetypes.guess_type(filename)[0]
+        k = Key(b)
+        k.key = filename
+        k.set_metadata('Content-Type', mime)
+        k.set_contents_from_string(content)
+        k.set_acl('public-read')
+        
     '''Home view with a signin and singup form'''
     if request.method == 'POST':
         form = DocumentForm(request.POST, request.FILES)
         if form.is_valid():
-            newdoc = Document(docfile = request.FILES['docfile'])
-            newdoc.save()
+            #newdoc = Document(docfile = request.FILES['docfile'])
+            #newdoc.save()
+            file = request.FILES['docfile']
+            filename = file['filename']
+            content = file['content']
+            store_in_s3(filename, content)
     else:
         form = DocumentForm()
     menus = dao.get_client_menus('c0')
