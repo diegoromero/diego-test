@@ -1,14 +1,4 @@
 import pymongo
-import mongoengine
-_MONGODB_USER = 'heroku'
-_MONGODB_PASSWD = '67qXAWeeMw9GcsWbz9pCxC2N5aSZrblkTJrTVFj4csM6IUqF0cepykkVbOhENY1RYJ1Hc5Xu'
-_MONGODB_HOST = 'oceanic.mongohq.com'
-_MONGODB_NAME = 'app23051257'
-_MONGODB_PORT = '10000'
-_MONGODB_DATABASE_HOST = \
-    'mongodb://%s:%s@%s:%s/%s' \
-    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_PORT, _MONGODB_NAME)
-
 from django.conf import settings
 from bootstrap import menus, items, clients
 from orders import OrdersDAO
