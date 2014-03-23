@@ -159,7 +159,7 @@ AWS_STORAGE_BUCKET_NAME = 'diego-test_bucket'
 AWS_ACCESS_KEY_ID = 'AKIAJWFJHFNFVUNMWQ3A'
 AWS_SECRET_ACCESS_KEY = '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'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+STATICFILES_STORAGE = "storages.backends.s3boto.S3BotoStorage(location='static')"
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATIC_DIRECTORY = 'static/'
 STATIC_URL = S3_URL + STATIC_DIRECTORY
