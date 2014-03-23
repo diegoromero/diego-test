@@ -6,7 +6,8 @@ import mongoengine
 _MONGODB_DATABASE_HOST = os.environ['MONGOHQ_URL']
 _MONGODB_NAME = _MONGODB_DATABASE_HOST.split('/')[-1]
 
-mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
+_MONGODB_CLIENT = mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
+_MONGODB = eval('_MONGODB_CLIENT.' + _MONGODB_NAME)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
