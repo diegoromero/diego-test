@@ -1,19 +1,12 @@
-import mongoengine
-_MONGODB_USER = 'heroku'
-_MONGODB_PASSWD = '67qXAWeeMw9GcsWbz9pCxC2N5aSZrblkTJrTVFj4csM6IUqF0cepykkVbOhENY1RYJ1Hc5Xu'
-_MONGODB_HOST = 'oceanic.mongohq.com'
-_MONGODB_NAME = 'app23051257'
-_MONGODB_PORT = '10000'
-_MONGODB_DATABASE_HOST = \
-    'mongodb://%s:%s@%s:%s/%s' \
-    % (_MONGODB_USER, _MONGODB_PASSWD, _MONGODB_HOST, _MONGODB_PORT, _MONGODB_NAME)
-
-mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
+import mongoengine
+_MONGODB_DATABASE_HOST = os.environ['MONGOHQ_URL']
+_MONGODB_NAME = _MONGODB_DATABASE_HOST.split('/')[-1]
+
+mongoengine.connect(_MONGODB_NAME, host=_MONGODB_DATABASE_HOST)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -159,7 +152,7 @@ AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
 AWS_ACCESS_KEY_ID = os.environ['AWS_ACCESS_KEY_ID']
 AWS_SECRET_ACCESS_KEY = os.environ['AWS_SECRET_ACCESS_KEY']
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-STATICFILES_STORAGE = "storages.backends.s3boto.S3BotoStorage"
+STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 S3_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME
 STATIC_DIRECTORY = 'static/'
 STATIC_URL = S3_URL + STATIC_DIRECTORY
