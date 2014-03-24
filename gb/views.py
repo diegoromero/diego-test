@@ -55,7 +55,7 @@ def home(request):
                   {'title': 'Welcome',
                    'AWS_ACCESS_KEY_ID': os.environ['AWS_ACCESS_KEY_ID'],
                    'policy': base64.b64encode(policy_document),
-                   'signature': base64.b64encode(hmac.new(os.environ['AWS_SECRET_ACCESS_KEY'], policy, hashlib.sha1).digest())
+                   'signature': base64.b64encode(hmac.new(os.environ['AWS_SECRET_ACCESS_KEY'], policy, hashlib.sha1).digest()),
                    'form': form,
                    'menus': menus,
                    'json_menus': mongo2jstree_list(menus)})
