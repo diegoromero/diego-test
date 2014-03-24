@@ -16,8 +16,8 @@ def home(request):
     return render(request, 'home_index.html',
                   {'title': 'Welcome',
                    'AWS_ACCESS_KEY_ID': os.environ['AWS_ACCESS_KEY_ID'],
-                   'policy': settings.policy,
-                   'signature': settings.signature,
+                   'policy': settings.POLICY,
+                   'signature': settings.SIGNATURE,
                    'form': form,
                    'menus': menus,
                    'json_menus': mongo2jstree_list(menus)})
