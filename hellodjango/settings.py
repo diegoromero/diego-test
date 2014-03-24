@@ -159,7 +159,7 @@ STATIC_DIRECTORY = '/static/'
 MEDIA_DIRECTORY = '/media/'
 STATIC_URL = S3_URL + STATIC_DIRECTORY
 MEDIA_URL = S3_URL + MEDIA_DIRECTORY
-import s3utils
-policy = s3utils.policy
-signature = s3utils.signature
+from s3utils import policy, signature
+POLICY = policy
+SIGNATURE = signature
 
