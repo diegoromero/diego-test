@@ -15,7 +15,7 @@ import hmac, hashlib
 
 policy_document = '''{"expiration": "2015-01-01T00:00:00Z",
   "conditions": [ 
-    {"bucket": "diego-test"}, 
+    {"bucket": "diego-test_bucket"}, 
     ["starts-with", "$key", "uploads/"],
     {"acl": "public-read"},
     {"success_action_redirect": "http://localhost/"},
