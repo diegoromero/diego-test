@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>{{ title }}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		{% load staticfiles %}
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<!--<script type="text/javascript" src="{% static 'js/jstree.min.js' %}" ></script>-->
@@ -10,8 +11,6 @@
 	<body>
 		<p>Hello</p>
 		<div id="jstree-test-old"></div>
-		
-		<p>{{ test }}</p>
 		
 		<form action="" method="post" enctype="multipart/form-data">
 			{% csrf_token %}
@@ -23,6 +22,22 @@
 			</p>
 			<p><input type="submit" value="Upload" /></p>
 		</form>
+		
+		<form action="https://diego-test.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="key" value="uploads/${filename}">
+			<input type="hidden" name="AWSAccessKeyId" value={{ AWS_ACCESS_KEY_ID }}> 
+			<input type="hidden" name="acl" value="public-read"> 
+			<input type="hidden" name="success_action_redirect" value="http://localhost/">
+			<input type="hidden" name="policy" value={{ policy }}>
+			<input type="hidden" name="signature" value={{ signature }}>
+			<input type="hidden" name="Content-Type" value="image/jpeg">
+			<!-- Include any additional input fields here -->
+
+			File to upload to S3: 
+			<input name="file" type="file"> 
+			<br> 
+			<input type="submit" value="Upload File to S3"> 
+		</form> 
 	</body>
 	<script type='text/javascript'>
 
