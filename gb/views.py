@@ -17,7 +17,7 @@ policy_document = '''{"expiration": "2015-01-01T00:00:00Z",
   "conditions": [ 
     {"bucket": "diego-test"}, 
     ["starts-with", "$key", "uploads/"],
-    {"acl": "private"},
+    {"acl": "public-read"},
     {"success_action_redirect": "http://localhost/"},
     ["starts-with", "$Content-Type", ""],
     ["content-length-range", 0, 1048576]
