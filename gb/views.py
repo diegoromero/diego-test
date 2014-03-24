@@ -23,7 +23,7 @@ policy_document = '''{"expiration": "2015-01-01T00:00:00Z",
     ["content-length-range", 0, 1048576]
   ]
 }'''
-
+policy = base64.b64encode(policy_document)
 # Create your views here.
 def home(request):
     '''
@@ -54,7 +54,7 @@ def home(request):
     return render(request, 'home_index.html',
                   {'title': 'Welcome',
                    'AWS_ACCESS_KEY_ID': os.environ['AWS_ACCESS_KEY_ID'],
-                   'policy': base64.b64encode(policy_document),
+                   'policy': policy,
                    'signature': base64.b64encode(hmac.new(os.environ['AWS_SECRET_ACCESS_KEY'], policy, hashlib.sha1).digest()),
                    'form': form,
                    'menus': menus,
