@@ -12,18 +12,7 @@
 		<p>Hello</p>
 		<div id="jstree-test-old"></div>
 		
-		<form action="" method="post" enctype="multipart/form-data">
-			{% csrf_token %}
-			<p>{{ form.non_field_errors }}</p>
-			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
-			<p>
-				{{ form.docfile.errors }}
-				{{ form.docfile }}
-			</p>
-			<p><input type="submit" value="Upload" /></p>
-		</form>
-		
-		<form action="https://diego-test_bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+		<form action="https://diego-test_bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data" id="up_form">
 			<input type="hidden" name="key" value="uploads/${filename}">
 			<input type="hidden" name="AWSAccessKeyId" value={{ AWS_ACCESS_KEY_ID }}> 
 			<input type="hidden" name="acl" value="public-read"> 
@@ -38,7 +27,48 @@
 			<br> 
 			<input type="submit" value="Upload File to S3"> 
 		</form> 
+		<div id="progressNumber"></div>
 	</body>
+	<script type="text/javascript">
+		function uploadFile() {
+
+			var fd = new FormData($('#up_form'));
+
+			var xhr = getXMLHTTPObject();
+
+			xhr.upload.addEventListener("progress", uploadProgress, false);
+			xhr.addEventListener("load", uploadComplete, false);
+			xhr.addEventListener("error", uploadFailed, false);
+			xhr.addEventListener("abort", uploadCanceled, false);
+
+			xhr.open($('#up_form').attr('method'), $('#up_form').attr('action'), true); //MUST BE LAST LINE BEFORE YOU SEND 
+
+			xhr.send(fd);
+		}
+		function uploadProgress(evt) {
+			if (evt.lengthComputable) {
+				var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+				document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+			}
+			else {
+				document.getElementById('progressNumber').innerHTML = 'unable to compute';
+			}
+		}
+
+		function uploadComplete(evt) {
+			/* This event is raised when the server send back a response */
+			alert("Done - " + evt.target.responseText );
+		}
+
+		function uploadFailed(evt) {
+			alert("There was an error attempting to upload the file." + evt);
+		}
+
+		function uploadCanceled(evt) {
+			alert("The upload has been canceled by the user or the browser dropped the connection.");
+		}
+	</script>
+	
 	<script type='text/javascript'>
 
 		var jmenus = {{ json_menus|safe }};
