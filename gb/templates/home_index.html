@@ -27,57 +27,38 @@
 			<br> 
 			<input type="button" value="Upload File to S3" onclick="uploadFile()"> 
 		</form> 
-		<div id="progressNumber"></div>
+		<progress></progress>
 	</body>
 	<script type="text/javascript">
-		function uploadFile() {
-			
-			var file = document.getElementById('file').files[0];
-			var fd = new FormData();
-
-			var key = $('#up_form').children('input[name=key]');
-
-			fd.append('key', key);
-			fd.append('acl', 'public-read'); 
-			fd.append('Content-Type', "image/jpeg");      
-			fd.append('AWSAccessKeyId', $('#up_form').children('input[name=AWSAccessKeyId]'));
-			fd.append('policy', $('#up_form').children('input[name=policy]'))
-			fd.append('signature',$('#up_form').children('input[name=signature]'));
-
-			fd.append("file",file);
-
-			var xhr = getXMLHTTPObject();
-
-			xhr.upload.addEventListener("progress", uploadProgress, false);
-			xhr.addEventListener("load", uploadComplete, false);
-			xhr.addEventListener("error", uploadFailed, false);
-			xhr.addEventListener("abort", uploadCanceled, false);
-
-			xhr.open($('#up_form').attr('method'), $('#up_form').attr('action'), true); //MUST BE LAST LINE BEFORE YOU SEND 
-
-			xhr.send(fd);
-		}
-		function uploadProgress(evt) {
-			if (evt.lengthComputable) {
-				var percentComplete = Math.round(evt.loaded * 100 / evt.total);
-				document.getElementById('progressNumber').innerHTML = percentComplete.toString() + '%';
+		$(':button').click(function(){
+			var formData = new FormData($('form')[0]);
+			$.ajax({
+				url: $('form').attr('action'),  //Server script to process data
+				type: 'POST',
+				xhr: function() {  // Custom XMLHttpRequest
+					var myXhr = $.ajaxSettings.xhr();
+					if(myXhr.upload){ // Check if upload property exists
+						myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
+					}
+					return myXhr;
+				},
+				//Ajax events
+				beforeSend: beforeSendHandler,
+				success: completeHandler,
+				error: errorHandler,
+				// Form data
+				data: formData,
+				//Options to tell jQuery not to process data or worry about content-type.
+				cache: false,
+				contentType: false,
+				processData: false
+			});
+		});
+		
+		function progressHandlingFunction(e){
+			if(e.lengthComputable){
+				$('progress').attr({value:e.loaded,max:e.total});
 			}
-			else {
-				document.getElementById('progressNumber').innerHTML = 'unable to compute';
-			}
-		}
-
-		function uploadComplete(evt) {
-			/* This event is raised when the server send back a response */
-			alert("Done - " + evt.target.responseText );
-		}
-
-		function uploadFailed(evt) {
-			alert("There was an error attempting to upload the file." + evt);
-		}
-
-		function uploadCanceled(evt) {
-			alert("The upload has been canceled by the user or the browser dropped the connection.");
 		}
 	</script>
 	
