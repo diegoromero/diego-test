@@ -23,7 +23,7 @@
 			<!-- Include any additional input fields here -->
 
 			File to upload to S3: 
-			<input name="file" type="file"> 
+			<input name="file" type="file" id="file"> 
 			<br> 
 			<input type="button" value="Upload File to S3" onclick="uploadFile()"> 
 		</form> 
@@ -31,8 +31,20 @@
 	</body>
 	<script type="text/javascript">
 		function uploadFile() {
+			
+			var file = document.getElementById('file').files[0];
+			var fd = new FormData();
 
-			var fd = new FormData($('#up_form'));
+			var key = $('#up_form').children('input[name=key]');
+
+			fd.append('key', key);
+			fd.append('acl', 'public-read'); 
+			fd.append('Content-Type', "image/jpeg");      
+			fd.append('AWSAccessKeyId', $('#up_form').children('input[name=AWSAccessKeyId]'));
+			fd.append('policy', $('#up_form').children('input[name=policy]'))
+			fd.append('signature',$('#up_form').children('input[name=signature]'));
+
+			fd.append("file",file);
 
 			var xhr = getXMLHTTPObject();
 
