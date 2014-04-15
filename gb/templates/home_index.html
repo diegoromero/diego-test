@@ -4,9 +4,13 @@
 		<title>{{ title }}</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		{% load staticfiles %}
-		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 		<!--<script type="text/javascript" src="{% static 'js/jstree.min.js' %}" ></script>-->
 		<script type="text/javascript" src="{% static 'js/jquery.jstree.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.fileupload.js' %}"></script>
+		<script type="text/javascript" src="{% static 'js/jquery.iframe-transport.js' %}"></script>
+		<link rel="stylesheet" type="text/css" href="{% static 'css/up.css' %}"> 
 	</head>
 	<body>
 		<p>Hello</p>
@@ -24,42 +28,61 @@
 
 			File to upload to S3: 
 			<input name="file" type="file" id="file"> 
-			<br> 
-			<input type="button" value="Upload File to S3"> 
+			<div class="progress"><div class="bar"></div></div>
 		</form> 
-		<progress></progress>
+		<!-- Used to Track Upload within our App -->
+		<form action="process-form-data.php" method="POST">
+			<input type="hidden" name="upload_original_name" />
+
+			<label for="upload_custom_name">Name:</label><br />
+			<input type="text" name="upload_custom_name" id="upload_custom_name" /><br />
+
+			<input type="submit" value="Save" />
+		</form>
 	</body>
 	<script type="text/javascript">
-		$(':button').click(function(){
-			var formData = new FormData($('form')[0]);
-			$.ajax({
-				url: $('form').attr('action'),  //Server script to process data
-				type: 'POST',
-				xhr: function() {  // Custom XMLHttpRequest
-					var myXhr = $.ajaxSettings.xhr();
-					if(myXhr.upload){ // Check if upload property exists
-						myXhr.upload.addEventListener('progress',progressHandlingFunction, false); // For handling the progress of the upload
-					}
-					return myXhr;
-				},
-				//Ajax events
-				//beforeSend: beforeSendHandler,
-				//success: completeHandler,
-				//error: errorHandler,
-				// Form data
-				data: formData,
-				//Options to tell jQuery not to process data or worry about content-type.
-				cache: false,
-				contentType: false,
-				processData: false
+		$(document).ready( function() {
+			$('.direct-upload').each( function() {
+				var form = $(this);
+
+				form.fileupload({
+					url: form.attr('action'),
+					type: 'POST',
+					datatype: 'xml',
+					add: function (event, data) {
+
+						// Message on unLoad.
+						window.onbeforeunload = function() {
+							return 'You have unsaved changes.';
+						};
+
+						// Submit
+						data.submit();
+					},
+					send: function(e, data) {
+						// onSend
+					},
+					progress: function(e, data){
+						// This is what makes everything really cool, thanks to that callback
+						// you can now update the progress bar based on the upload progress.
+						var percent = Math.round((data.loaded / data.total) * 100);
+						$('.bar').css('width', percent + '%');
+					},
+					fail: function(e, data) {
+						// Remove 'unsaved changes' message.
+						window.onbeforeunload = null;
+					},
+					success: function(data) {
+						// onSuccess
+					},
+					done: function (event, data) {
+						// Fill the name field with the file's name.
+						$('#upload_original_name').val(data.originalFiles[0].name);
+						$('#upload_custom_name').val(data.originalFiles[0].name);
+					},
+				});
 			});
 		});
-		
-		function progressHandlingFunction(e){
-			if(e.lengthComputable){
-				$('progress').attr({value:e.loaded,max:e.total});
-			}
-		}
 	</script>
 	
 	<script type='text/javascript'>
