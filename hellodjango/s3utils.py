@@ -14,6 +14,7 @@ policy_document = '''
     ["starts-with", "$key", "uploads/"],
     {"acl": "public-read"},
     {"success_action_redirect": "http://diego-test.herokuapp.com/"},
+    ["starts-with", "$Content-Type", ""],
     ["content-length-range", 0, 1048576]
   ]
 }
