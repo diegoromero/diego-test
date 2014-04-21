@@ -67,6 +67,7 @@
 				},
 				progress: function(e, data){
 					console.log('progress');
+					console.log(Math.round((e.loaded / e.total) * 100));
 					// This is what makes everything really cool, thanks to that callback
 					// you can now update the progress bar based on the upload progress
 					var percent = Math.round((e.loaded / e.total) * 100);
