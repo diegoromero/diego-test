@@ -50,10 +50,11 @@
 			$('.direct-upload').fileupload({
 				forceIframeTransport: true,    // VERY IMPORTANT.  you will get 405 Method Not Allowed if you don't add this.
 				autoUpload: true,
+				type: 'POST',
 				add: function (event, data) {
 				  
 
-				  data.submit();
+					data.submit();
 				},
 				send: function(e, data) {
 				  // show a loading spinner because now the form will be submitted to amazon, 
