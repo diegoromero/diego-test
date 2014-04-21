@@ -14,6 +14,10 @@
 	</head>
 	<body>
 		<p>Hello</p>
+		</br>
+		<p>Method: {{ method }}</p>
+		</br>
+		<p>file: <span id='upload_original_name'></span></p>
 		<div id="jstree-test-old"></div>
 		
 		<form action="https://diego-test_bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data" class="direct-upload">
@@ -29,6 +33,7 @@
 			File to upload to S3: 
 			<input name="file" type="file" id="file"> 
 			<div class="progress"><div class="bar"></div></div>
+			<input type="submit" value="Save" />
 		</form> 
 		<!-- Used to Track Upload within our App -->
 		<form action="" method="POST">
@@ -42,7 +47,7 @@
 	</body>
 	<script type="text/javascript">
 		$(document).ready( function() {
-			$('.direct-upload').each( function() {
+			$('.direct-upload').submit( function() {
 				var form = $(this);
 
 				form.fileupload({
