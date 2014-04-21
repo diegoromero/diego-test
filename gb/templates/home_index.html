@@ -59,9 +59,10 @@
 				  dataType: 'xml', // This is really important as s3 gives us back the url of the file in a XML document
 				  add: function (event, data) {
 					console.log('add');
-					$('#upload_but').unbind('click');
-					data.context = $("#upload_but").bind('click', function (e) {
+					$('#upload_but').off('click');
+					data.context = $("#upload_but").on('click', function (e) {
 						console.log('button clicked');
+						console.log(data);
 						data.submit();
 					});
 					//data.submit();
