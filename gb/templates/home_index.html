@@ -51,6 +51,8 @@
 				var form = $(this)
 
 				$(this).fileupload({
+					maxNumberOfFiles: 1,
+					fileInput: $('#file'),
 				  url: form.attr('action'),
 				  type: 'POST',
 				  autoUpload: false,
