@@ -56,10 +56,11 @@
 				  autoUpload: false,
 				  dataType: 'xml', // This is really important as s3 gives us back the url of the file in a XML document
 				  add: function (event, data) {
-					
-					data.submit();
+					console.log('add');
+					//data.submit();
 				  },
 				  submit: function(e, data) {
+					console.log('submit');
 					$(this).fileupload('send', data);
 					return false;
 				  },
