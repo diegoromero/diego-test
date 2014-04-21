@@ -46,6 +46,10 @@
 	</body>
 	<script type="text/javascript">
 		$(document).ready( function() {
+			$('#file').change(function() {
+				console.log($('#file').val());
+			});
+		
 			$('.direct-upload').each(function() {
 
 				var form = $(this)
