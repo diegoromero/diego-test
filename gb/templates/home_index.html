@@ -32,7 +32,7 @@
 			File to upload to S3: 
 			<input name="file" type="file" id="file"> 
 			<div class="progress"><div class="bar"></div></div>
-			<input type="submit" value="Save" />
+			<button type="button" id="upload_but">Upload</button>
 		</form> 
 		<!-- Used to Track Upload within our App -->
 		<form action="" method="POST">
@@ -57,12 +57,11 @@
 				  dataType: 'xml', // This is really important as s3 gives us back the url of the file in a XML document
 				  add: function (event, data) {
 					console.log('add');
+					$("#upload_but").one('click', function (e) {
+						console.log('button clicked');
+						data.submit();
+					});
 					//data.submit();
-				  },
-				  submit: function(e, data) {
-					console.log('submit');
-					$(this).fileupload('send', data);
-					return false;
 				  },
 				  send: function(e, data) {
 					$('.progress').fadeIn();
