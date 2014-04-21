@@ -49,9 +49,17 @@
 		$(document).ready( function() {
 			$('.direct-upload').fileupload({
 				url: $(this).attr('action'),
-				dataType: 'xml',
-				autoUpload: true,
+				datatype: 'xml',
 				type: 'POST',
+				formData: {
+					key: $(this).children('input[name=key]').val(),
+					AWSAccessKeyId: $(this).children('input[name=AWSAccessKeyId]').val(),
+					acl: $(this).children('input[name=acl]').val(),
+					success_action_redirect: $(this).children('input[name=success_action_redirect]').val(),
+					policy: $(this).children('input[name=policy]').val(),
+					signature: $(this).children('input[name=signature]').val(),
+					Content-Type: $(this).children('input[name=Content-Type]').val()
+				},
 				add: function (event, data) {
 				  
 
