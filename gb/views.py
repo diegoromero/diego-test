@@ -27,6 +27,11 @@ def home(request):
                    'json_menus': mongo2jstree_list(menus),
                    'method': method})
 
+def mobile(request):
+    '''Mobile view'''
+    return render(request, 'mobile_index.html',
+                  {'title': 'Mob view'})
+
 ####################
 # Helper functions #
 ####################
