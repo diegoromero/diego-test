@@ -1,15 +1,34 @@
-$(document).ready(function() {
+/*! Normalized address bar hiding for iOS & Android (c) @scottjehl MIT License */
+(function( win ){
+	var doc = win.document;
 
-  if (navigator.userAgent.match(/Android/i)) {
-	$('#tit').text('android');
-    window.scrollTo(0,0); // reset in case prev not scrolled  
-    var nPageH = $(document).height();
-    var nViewH = window.outerHeight;
-    if (nViewH > nPageH) {
-		nViewH = nViewH / window.devicePixelRatio;
-		$('BODY').css('height',nViewH + 'px');
-    }
-    window.scrollTo(0,1);
-  }
+	// If there's a hash, or addEventListener is undefined, stop here
+	if(!win.navigator.standalone && !location.hash && win.addEventListener ){
 
-});
+		//scroll to 1
+		win.scrollTo( 0, 1 );
+		var scrollTop = 1,
+			getScrollTop = function(){
+				return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+			},
+
+			//reset to 0 on bodyready, if needed
+			bodycheck = setInterval(function(){
+				if( doc.body ){
+					clearInterval( bodycheck );
+					scrollTop = getScrollTop();
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}	
+			}, 15 );
+
+		win.addEventListener( "load", function(){
+			setTimeout(function(){
+				//at load, if user hasn't scrolled more than 20 or so...
+				if( getScrollTop() < 20 ){
+					//reset to hide addr bar at onload
+					win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+				}
+			}, 0);
+		}, false );
+	}
+})( this );
