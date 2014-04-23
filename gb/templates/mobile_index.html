@@ -29,39 +29,41 @@
 				</div>
 			</div><!-- /header -->
 
-			<div role="main" class="ui-content" id="carousel">
-				<div style="background: black url('http://geekbar_bucket.s3.amazonaws.com/media/c0/4') no-repeat center center;">
-					<h4 style="color: white;">bourbon salmon</h4>
-					<p style="color: white;">grilled salmon brushed with woodford reserve bourbon. Seasonal vegetables on the side - 16.99</p>
-					<label for="quantity">Order Quantity:</label>
-					<form action="" method="POST">
-						{% csrf_token %}
-						<input type="range" name="quantity" id="quantity" value="1"
-						min="1" max="8" data-theme="a" data-highlight="true"/>
-						<input type="submit" value="Order" data-role="button" data-theme="b"/>
-					</form>
-				</div>
-				<div style="background: black url('http://geekbar_bucket.s3.amazonaws.com/media/c0/7') no-repeat center center;">
-					<h4 style="color: white;">cajun fish taco</h4>
-					<p style="color: white;">a spicy pescadorian twist on the traditional baja taco. Four servings. - 14.99</p>
-					<label for="quantity">Order Quantity:</label>
-					<form action="" method="POST">
-						{% csrf_token %}
-						<input type="range" name="quantity" id="quantity" value="1"
-						min="1" max="8" data-theme="a" data-highlight="true"/>
-						<input type="submit" value="Order" data-role="button" data-theme="b"/>
-					</form>
-				</div>
-				<div style="background: black url('http://geekbar_bucket.s3.amazonaws.com/media/c0/0') no-repeat center center;">
-					<h4 style="color: white;">sweet potato fries</h4>
-					<p style="color: white;">served with brown sugar cream cheese and housemade barbecue sauce - 6.99</p>
-					<label for="quantity">Order Quantity:</label>
-					<form action="" method="POST">
-						{% csrf_token %}
-						<input type="range" name="quantity" id="quantity" value="1"
-						min="1" max="8" data-theme="a" data-highlight="true"/>
-						<input type="submit" value="Order" data-role="button" data-theme="b"/>
-					</form>
+			<div role="main" class="ui-content">
+				<div id="carousel">
+					<div style="background: black url('http://geekbar_bucket.s3.amazonaws.com/media/c0/4') no-repeat center center;">
+						<h4 style="color: white; text-shadow: 0 0 5px #000;">bourbon salmon</h4>
+						<p style="color: white; text-shadow: 0 0 5px #000;">grilled salmon brushed with woodford reserve bourbon. Seasonal vegetables on the side - 16.99</p>
+						<label for="quantity">Order Quantity:</label>
+						<form action="" method="POST">
+							{% csrf_token %}
+							<input type="range" name="quantity" id="quantity" value="1"
+							min="1" max="8" data-theme="a" data-highlight="true"/>
+							<input type="submit" value="Order" data-role="button" data-theme="b"/>
+						</form>
+					</div>
+					<div style="background: black url('http://geekbar_bucket.s3.amazonaws.com/media/c0/7') no-repeat center center;">
+						<h4 style="color: white; text-shadow: 0 0 5px #000;">cajun fish taco</h4>
+						<p style="color: white; text-shadow: 0 0 5px #000;">a spicy pescadorian twist on the traditional baja taco. Four servings. - 14.99</p>
+						<label for="quantity">Order Quantity:</label>
+						<form action="" method="POST">
+							{% csrf_token %}
+							<input type="range" name="quantity" id="quantity" value="1"
+							min="1" max="8" data-theme="a" data-highlight="true"/>
+							<input type="submit" value="Order" data-role="button" data-theme="b"/>
+						</form>
+					</div>
+					<div style="background: black url('http://geekbar_bucket.s3.amazonaws.com/media/c0/0') no-repeat center center;">
+						<h4 style="color: white; text-shadow: 0 0 5px #000;">sweet potato fries</h4>
+						<p style="color: white; text-shadow: 0 0 5px #000;">served with brown sugar cream cheese and housemade barbecue sauce - 6.99</p>
+						<label for="quantity">Order Quantity:</label>
+						<form action="" method="POST">
+							{% csrf_token %}
+							<input type="range" name="quantity" id="quantity" value="1"
+							min="1" max="8" data-theme="a" data-highlight="true"/>
+							<input type="submit" value="Order" data-role="button" data-theme="b"/>
+						</form>
+					</div>
 				</div>
 			</div><!-- /content -->
 
