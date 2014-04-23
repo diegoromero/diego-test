@@ -14,55 +14,57 @@
 	<body>
 		<div data-role="page">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false">
-				<h1>Page Title</h1>
+				<div>
+					<a href="" data-role="button"
+					data-mini="true" class="ui-btn-left" data-icon="arrow-l">
+						Main Menu
+					</a>
+				</div>
+				<h1>Item display</h1>
+				<div>
+					<a href="" data-role="button"
+					data-mini="true" class="ui-btn-right" data-icon="grid">
+						My Orders
+					</a>
+				</div>
 			</div><!-- /header -->
 
-			<div role="main" class="ui-content">
-			
-				<div id="carousel">
-					<div style="background-image: url('http://kenwheeler.github.io/slick/img/fonz1.png'); background-size: 100%;">
-						<p style="color: white;">This is the first carousel paragraph.</p>
-					</div>
-					<div style="background-image: url('http://kenwheeler.github.io/slick/img/fonz3.png'); background-size: 100%;">
-						<p style="color: red;">This is the second carousel paragraph.</p>
-					</div>
-					<div style="background-image: url('http://kenwheeler.github.io/slick/img/fonz3.png'); background-size: 100%;">
-						<p>This is the third carousel paragraph.</p>
-					</div>
+			<div role="main" class="ui-content" id="carousel">
+				<div style="background-image: url('http://geekbar_bucket.s3.amazonaws.com/media/c0/4'); background-size: 100%;">
+					<h5>bourbon salmon</h5>
+					<p>grilled salmon brushed with woodford reserve bourbon. Seasonal vegetables on the side - 16.99</p>
+					<label for="quantity">Order Quantity:</label>
+					<form action="" method="POST">
+						{% csrf_token %}
+						<input type="range" name="quantity" id="quantity" value="1"
+						min="1" max="8" data-theme="a" data-highlight="true"/>
+						<input type="submit" value="Order" data-role="button" data-theme="b"/>
+					</form>
 				</div>
-			
-				<h1>HTML Ipsum Presents</h1>
-	       
-				<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis.</p>
-
-				<h2>Header Level 2</h2>
-						   
-				<ol>
-				   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-				   <li>Aliquam tincidunt mauris eu risus.</li>
-				</ol>
-
-				<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus magna. Cras in mi at felis aliquet congue. Ut a est eget ligula molestie gravida. Curabitur massa. Donec eleifend, libero at sagittis mollis, tellus est malesuada tellus, at luctus turpis elit sit amet quam. Vivamus pretium ornare est.</p></blockquote>
-
-				<h3>Header Level 3</h3>
-
-				<ul>
-				   <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-				   <li>Aliquam tincidunt mauris eu risus.</li>
-				</ul>
-
-				<pre><code>
-				#header h1 a { 
-					display: block; 
-					width: 300px; 
-					height: 80px; 
-				}
-				</code></pre>
+				<div style="background-image: url('http://geekbar_bucket.s3.amazonaws.com/media/c0/7'); background-size: 100%;">
+					<h5>cajun fish taco</h5>
+					<p>a spicy pescadorian twist on the traditional baja taco. Four servings. - 14.99</p>
+					<label for="quantity">Order Quantity:</label>
+					<form action="" method="POST">
+						{% csrf_token %}
+						<input type="range" name="quantity" id="quantity" value="1"
+						min="1" max="8" data-theme="a" data-highlight="true"/>
+						<input type="submit" value="Order" data-role="button" data-theme="b"/>
+					</form>
+				</div>
+				<div style="http://geekbar_bucket.s3.amazonaws.com/media/c0/0'); background-size: 100%;">
+					<h5>sweet potato fries</h5>
+					<p>served with brown sugar cream cheese and housemade barbecue sauce - 6.99</p>
+					<label for="quantity">Order Quantity:</label>
+					<form action="" method="POST">
+						{% csrf_token %}
+						<input type="range" name="quantity" id="quantity" value="1"
+						min="1" max="8" data-theme="a" data-highlight="true"/>
+						<input type="submit" value="Order" data-role="button" data-theme="b"/>
+					</form>
+				</div>
 			</div><!-- /content -->
 
-			<div data-role="footer" data-position="fixed" data-tap-toggle="false">
-				<h4>Page Footer</h4>
-			</div><!-- /footer -->
 		</div>
 	</body>
 </html>
