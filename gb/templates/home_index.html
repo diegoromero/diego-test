@@ -44,7 +44,9 @@
 			<input type="submit" value="Save" />
 		</form>
 		
-		{{ request }}
+		{% for i in request %}
+			<p>{{ i }}</p>
+		{% endfor %}
 		
 	</body>
 	<script type="text/javascript">
