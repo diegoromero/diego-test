@@ -25,7 +25,8 @@ def home(request):
                    'form': form,
                    'menus': menus,
                    'json_menus': mongo2jstree_list(menus),
-                   'method': method})
+                   'method': method,
+                   'request': request})
 
 def mobile(request):
     '''Mobile view'''
