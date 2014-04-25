@@ -34,19 +34,9 @@
 			<div class="progress"><div class="bar"></div></div>
 			<button type="button" id="upload_but">Upload</button>
 		</form> 
-		<!-- Used to Track Upload within our App -->
-		<form action="" method="POST">
-			<input type="hidden" name="upload_original_name" />
 
-			<label for="upload_custom_name">Name:</label><br />
-			<input type="text" name="upload_custom_name" id="upload_custom_name" /><br />
-
-			<input type="submit" value="Save" />
-		</form>
 		
-		{% for i in request %}
-			<p>{{ i }}</p>
-		{% endfor %}
+		{{ request }}
 		
 	</body>
 	<script type="text/javascript">
