@@ -13,7 +13,7 @@ def home(request):
     '''Home view with a signin and singup form'''
     client_id = 'c0'
     if 'bill_n' not in request.session:
-        dao.new_bill()
+        dao.new_bill(client_id)
         bills = dao.get_bills(client_id)
         bills %= 10000
         request.sessions['bill_n'] = bills
