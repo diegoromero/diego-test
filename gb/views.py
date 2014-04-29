@@ -16,12 +16,12 @@ def home(request):
         dao.new_bill(client_id)
         bills = dao.get_bills(client_id)
         bills %= 10000
-        request.sessions['bill_n'] = bills
+        request.session['bill_n'] = bills
     
     return render(request, 'home_index.html',
                   {'title': 'Welcome',                   
                    'request': request,
-                   'bill_n': request.sessions['bill_n']})
+                   'bill_n': request.session['bill_n']})
 
 def mobile(request):
     '''Mobile view'''
