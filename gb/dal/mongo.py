@@ -20,6 +20,12 @@ class MongoOrdersDAO(OrdersDAO):
             self.db.clients.remove()
             self.db.clients.insert(clients)
 
+    def get_bills(self, client_id):
+        return self.db.clients.find_one({'_id': client_id})['bills']
+
+    def new_bill(self, client_id):
+        self.db.clients.update({'_id': client_id}, {'$inc': {'bills': 1}})
+
     def get_client_menus_list(self, client_id):
         '''Gets the list of menus from the client'''
         return self.db.clients.find_one({'_id': client_id})['menus']

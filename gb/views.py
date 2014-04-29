@@ -11,10 +11,17 @@ import os
 # Create your views here.
 def home(request):
     '''Home view with a signin and singup form'''
+    client_id = 'c0'
+    if 'bill_n' not in request.session:
+        dao.new_bill()
+        bills = dao.get_bills(client_id)
+        bills %= 10000
+        request.sessions['bill_n'] = bills
     
     return render(request, 'home_index.html',
                   {'title': 'Welcome',                   
-                   'request': request})
+                   'request': request,
+                   'bill_n': request.sessions['bill_n']})
 
 def mobile(request):
     '''Mobile view'''

@@ -3,7 +3,8 @@ clients = [
      'menu':'m0',
      'menus': ['m0', 'm1'], 
      'seats':['s0', 's1','s2','s3'],
-     'name':'Foo'
+     'name':'Foo',
+     'bills': 0
     }
 ]
 
