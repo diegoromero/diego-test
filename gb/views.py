@@ -11,21 +11,9 @@ import os
 # Create your views here.
 def home(request):
     '''Home view with a signin and singup form'''
-    form = DocumentForm()
-    menus = dao.get_client_menus('c0')
-    method = 'get'
-    if request.method == 'POST':
-        method = 'post'
-        print 'entered POST'
+    
     return render(request, 'home_index.html',
-                  {'title': 'Welcome',
-                   'AWS_ACCESS_KEY_ID': os.environ['AWS_ACCESS_KEY_ID'],
-                   'policy': settings.POLICY,
-                   'signature': settings.SIGNATURE,
-                   'form': form,
-                   'menus': menus,
-                   'json_menus': mongo2jstree_list(menus),
-                   'method': method,
+                  {'title': 'Welcome',                   
                    'request': request})
 
 def mobile(request):

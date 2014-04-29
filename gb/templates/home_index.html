@@ -2,106 +2,14 @@
 <html>
 	<head>
 		<title>{{ title }}</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		{% load staticfiles %}
-		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
-		<!--<script type="text/javascript" src="{% static 'js/jstree.min.js' %}" ></script>-->
-		<script type="text/javascript" src="{% static 'js/jquery.jstree.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/jquery.fileupload.js' %}"></script>
-		<script type="text/javascript" src="{% static 'js/jquery.iframe-transport.js' %}"></script>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/up.css' %}"> 
+		<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	</head>
 	<body>
-		<p>Hello</p>
-		</br>
-		<p>Method: {{ method }}</p>
-		</br>
-		<p>file: <span id='upload_original_name'></span></p>
-		<div id="jstree-test-old"></div>
+		<p>request: {{ request }}</p>
 		
-		<form action="https://diego-test_bucket.s3.amazonaws.com/" method="post" enctype="multipart/form-data" class="direct-upload">
-			<input type="hidden" name="key" value="uploads/${filename}">
-			<input type="hidden" name="AWSAccessKeyId" value={{ AWS_ACCESS_KEY_ID }}> 
-			<input type="hidden" name="acl" value="public-read"> 
-			<input type="hidden" name="policy" value={{ policy }}>
-			<input type="hidden" name="signature" value={{ signature }}>
-			<input type="hidden" name="Content-Type" value="image/jpeg">
-			<!-- Include any additional input fields here -->
-
-			File to upload to S3: 
-			<input name="file" type="file" id="file"> 
-			<div class="progress"><div class="bar"></div></div>
-			<button type="button" id="upload_but">Upload</button>
-		</form> 
-
-		
-		{{ request }}
-		
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	</body>
-	<script type="text/javascript">
-		$(document).ready( function() {
-			$('#file').change(function() {
-				console.log($('#file').val());
-			});
-		
-			$('.direct-upload').each(function() {
-
-				var form = $(this)
-
-				$(this).fileupload({
-					maxNumberOfFiles: 1,
-					fileInput: $('#file'),
-					replaceFileInput: false,
-				  url: form.attr('action'),
-				  type: 'POST',
-				  autoUpload: false,
-				  dataType: 'xml', // This is really important as s3 gives us back the url of the file in a XML document
-				  add: function (event, data) {
-					console.log('add');
-					console.log(data.files[0].name);
-					$('#upload_but').off('click');
-					data.context = $("#upload_but").on('click', function (e) {
-						console.log('button clicked');
-						
-						data.submit();
-					});
-					//data.submit();
-				  },
-				  send: function(e, data) {
-					$('.progress').fadeIn();
-				  },
-				  progress: function(e, data){
-					// This is what makes everything really cool, thanks to that callback
-					// you can now update the progress bar based on the upload progress
-					var percent = Math.round((data.loaded / data.total) * 100);
-					$('.bar').css('width', percent + '%');
-				  },
-				  fail: function(e, data) {
-					console.log('fail');
-				  },
-				  success: function(data) {
-					// Here we get the file url on s3 in an xml doc
-					console.log('success');
-				  },
-				  done: function (event, data) {
-					$('.progress').fadeOut(300, function() {
-					  $('.bar').css('width', 0);
-					})
-				  },
-				})
-			  })
-		});
-	</script>
-	
-	<script type='text/javascript'>
-
-		var jmenus = {{ json_menus|safe }};
-		var menus = new Array();
-		var a = 0;
-		for (var i=0; i<jmenus.length; i++){
-			menus[i] = eval("(" + jmenus[i] + ')');
-		};
-
-	</script>
 </html>
