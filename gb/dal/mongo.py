@@ -7,7 +7,7 @@ from bson.objectid import ObjectId
 
 class MongoOrdersDAO(OrdersDAO):
 
-    def __init__(self, bootstrap=True):
+    def __init__(self, bootstrap=False):
         self.db = settings._MONGODB
         if bootstrap:
             # load bootstrap data
