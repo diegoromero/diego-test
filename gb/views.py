@@ -20,7 +20,7 @@ def home(request):
     
     return render(request, 'home_index.html',
                   {'title': 'Welcome',                   
-                   'request': request,
+                   'session': request.session,
                    'bill_n': request.session['bill_n']})
 
 def mobile(request):
