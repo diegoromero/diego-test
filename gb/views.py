@@ -22,7 +22,7 @@ def home(request):
     expire = []
     expire.append(request.session.get_expiry_date())
     expire.append(request.session.get_expiry_age())
-    expire.append(get_expire_at_browser_close())
+    expire.append(request.session.get_expire_at_browser_close())
     
     return render(request, 'home_index.html',
                   {'title': 'Welcome',                   
