@@ -18,7 +18,7 @@ def home(request):
         bills %= 10000
         request.session['bill_n'] = bills
 
-    
+    request.session.set_expiry(300)
     expire = []
     expire.append(request.session.get_expiry_date())
     expire.append(request.session.get_expiry_age())
