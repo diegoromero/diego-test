@@ -17,19 +17,13 @@ def home(request):
         bills = dao.get_bills(client_id)
         bills %= 10000
         request.session['bill_n'] = bills
-
-    request.session.set_expiry(300)
-    expire = []
-    expire.append(request.session.get_expiry_date())
-    expire.append(request.session.get_expiry_age())
-    expire.append(request.session.get_expire_at_browser_close())
     
     return render(request, 'home_index.html',
                   {'title': 'Welcome',                   
                    'request': request,
                    'session': str(request.session),
-                   'bill_n': request.session['bill_n'],
-                   'expire': expire})
+                   'bill_n': request.session['bill_n']
+                   })
 
 def mobile(request):
     '''Mobile view'''
