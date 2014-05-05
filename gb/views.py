@@ -21,7 +21,7 @@ def home(request):
     '''Home view with a signin and singup form'''
     if 'quantity' in request.POST:
         val = dao.new_value(request.POST['quantity'])
-        Screen.see(val)
+        Screen.sse(val)
         
     
     return render(request, 'home_index.html',
