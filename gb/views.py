@@ -51,13 +51,10 @@ class MySseEvents(BaseSseView):
 class Screen(BaseSseView):
     def sse(self, value):
         self.sse.add_message('test', value)
-        yield
-    '''
     def iterator(self):
         while True:
-            self.sse.add_message('test', unicode(now()))
             time.sleep(1)
-            yield'''
+            yield
 
 
 ####################
