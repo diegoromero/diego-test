@@ -21,7 +21,7 @@ def home(request):
     '''Home view with a signin and singup form'''
     if 'quantity' in request.POST:
         val = dao.new_value(request.POST['quantity'])
-        Screen.sse(self, str(val))
+        Screen.sse(str(val))
         
     
     return render(request, 'home_index.html',
@@ -50,6 +50,7 @@ class MySseEvents(BaseSseView):
 class Screen(BaseSseView):
     def sse(self, value):
         self.sse.add_message('test', value)
+        yield
     '''
     def iterator(self):
         while True:
