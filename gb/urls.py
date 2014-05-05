@@ -5,7 +5,6 @@ from gb import views
 
 urlpatterns = patterns('',
     url(r'^home/$', views.home),
-    url(r'^mobile/$', views.mobile),
     url(r'^sse/$', views.SSE.as_view(), name='sse'),  # this URL is arbitrary.
     url(r'^$', views.HomePage.as_view(), name='homepage'),                   
 )
