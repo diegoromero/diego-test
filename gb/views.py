@@ -49,6 +49,9 @@ class Home2(View):
         return render_to_response('home2.html', {},
                     context_instance=RequestContext(request))
 
+def Home3(request):
+    return render(request, 'home3.html', {})
+
 class MySseEvents(BaseSseView):
     def iterator(self):
         while True:
