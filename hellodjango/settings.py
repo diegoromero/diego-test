@@ -163,7 +163,10 @@ from s3utils import policy, signature
 POLICY = policy
 SIGNATURE = signature
 
+import urlparse
+redis_url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
 REDIS_SSEQUEUE_CONNECTION_SETTINGS = {
-    'location': 'localhost:6379',
+    'location': '%s:%s' % (redis_url.hostname, redis_url.port),
     'db': 0,
+    'password': redis_url.password,
 }
