@@ -14,6 +14,7 @@ from django.template import RequestContext
 from django.utils.timezone import now
 
 from django_sse.views import BaseSseView
+from django_sse.redisqueue import RedisQueueView, send_event
 import time
 
 # Create your views here.
@@ -21,8 +22,7 @@ def home(request):
     '''Home view with a signin and singup form'''
     if 'quantity' in request.POST:
         val = dao.new_value(request.POST['quantity'])
-        screen = Screen()
-        screen.send_sse(str(val))
+        send_event('test', str(val), 'sse_%s' % 'screen')
         
     
     return render(request, 'home_index.html',
@@ -48,20 +48,9 @@ class MySseEvents(BaseSseView):
             time.sleep(1)
             yield
 
-class Screen(BaseSseView):
-    toggle = False
-    message = ''
-    
-    def send_sse(self, value):
-        self.message = value
-        self.toggle = True
-    def iterator(self):
-        while True:
-            time.sleep(1)
-            if self.toggle:
-                self.sse.add_message('test', self.message)
-                self.toggle = False
-                yield
+class Screen(RedisQueueView):
+    def get_redis_channel(self):
+        return 'sse_%s' % 'screen'
 
 
 ####################
