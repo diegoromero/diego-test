@@ -25,11 +25,7 @@ def home(request):
         
     
     return render(request, 'home_index.html',
-                  {'title': 'Welcome',                   
-                   'request': request,
-                   'session': str(request.session),
-                   'bill_n': request.session['bill_n'],
-                   'expire': expire})
+                  {})
 
 class Home1(View):
     def get(self, request):
