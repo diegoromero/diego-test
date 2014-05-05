@@ -49,12 +49,19 @@ class MySseEvents(BaseSseView):
             yield
 
 class Screen(BaseSseView):
+    toggle = False
+    message = ''
+    
     def send_sse(self, value):
-        self.sse.add_message('test', value)
+        self.message = value
+        self.toggle = True
     def iterator(self):
         while True:
             time.sleep(1)
-            yield
+            if self.toggle:
+                self.sse.add_message('test', self.message)
+                self.toggle = False
+                yield
 
 
 ####################
