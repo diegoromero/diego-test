@@ -14,6 +14,7 @@ from django.template import RequestContext
 from django.utils.timezone import now
 
 from django_sse.views import BaseSseView
+import time
 
 # Create your views here.
 def home(request):
