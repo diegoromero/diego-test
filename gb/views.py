@@ -22,7 +22,7 @@ def home(request):
     if 'quantity' in request.POST:
         val = dao.new_value(request.POST['quantity'])
         screen = Screen()
-        screen.sse(str(val))
+        screen.send_sse(str(val))
         
     
     return render(request, 'home_index.html',
@@ -49,7 +49,7 @@ class MySseEvents(BaseSseView):
             yield
 
 class Screen(BaseSseView):
-    def sse(self, value):
+    def send_sse(self, value):
         self.sse.add_message('test', value)
     def iterator(self):
         while True:
