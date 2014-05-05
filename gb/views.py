@@ -48,7 +48,7 @@ class Home2(View):
         return render_to_response('home2.html', {},
                     context_instance=RequestContext(request))
 
-class MySseEvents(BaseSSeView):
+class MySseEvents(BaseSseView):
     def iterator(self):
         while True:
             self.sse.add_message('date', unicode(now()))
