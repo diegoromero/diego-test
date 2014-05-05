@@ -4,6 +4,8 @@ from django.conf.urls.static import static
 from gb import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.home),
-    url(r'^mobile*$', views.mobile),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^home/$', views.home),
+    url(r'^mobile/$', views.mobile),
+    url(r'^sse/$', views.SSE.as_view(), name='sse'),  # this URL is arbitrary.
+    url(r'^$', views.HomePage.as_view(), name='homepage'),                   
+)

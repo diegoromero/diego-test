@@ -8,6 +8,9 @@ from forms import DocumentForm
 
 import os
 
+from django.views.generic import TemplateView
+from django_sse.redisqueue import RedisQueueView
+
 # Create your views here.
 def home(request):
     '''Home view with a signin and singup form'''
@@ -31,10 +34,13 @@ def home(request):
                    'bill_n': request.session['bill_n'],
                    'expire': expire})
 
-def mobile(request):
-    '''Mobile view'''
-    return render(request, 'mobile_index.html',
-                  {'title': 'Mob view'})
+class HomePage(TemplateView):
+    template_name = 'index.html'
+
+class SSE(RedisQueueView):
+    def get_redis_channel(self):
+        return 'sse_%s' % self.request.user.username
+
 
 ####################
 # Helper functions #

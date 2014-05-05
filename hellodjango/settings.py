@@ -163,3 +163,7 @@ from s3utils import policy, signature
 POLICY = policy
 SIGNATURE = signature
 
+REDIS_SSEQUEUE_CONNECTION_SETTINGS = {
+    'location': 'localhost:6379',
+    'db': 0,
+}
