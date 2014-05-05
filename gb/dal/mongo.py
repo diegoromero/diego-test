@@ -20,6 +20,10 @@ class MongoOrdersDAO(OrdersDAO):
             self.db.clients.remove()
             self.db.clients.insert(clients)
 
+    def new_value(self, value):
+        new = self.db.clients.insert({'val': value})
+        return new
+
     def get_bills(self, client_id):
         return self.db.clients.find_one({'_id': client_id})['bills']
 

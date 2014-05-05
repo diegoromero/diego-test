@@ -13,4 +13,5 @@ urlpatterns = patterns('',
 
     url(r'^events1/$', views.MySseEvents.as_view(), name='events1'),
     url(r'^events2/$', RedisQueueView.as_view(), name='events2'),
+    url(r'^events3/$', views.Screen.as_view(), name='events3'),
 )

@@ -6,13 +6,11 @@
 		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
 	</head>
 	<body>
-		<p>request: {{ request }}</p>
-		
-		<p>request.session: {{ session }}</p>
-		
-		<p>bill no: {{ bill_n }}</p>
-		
-		<p>expire: {{ expire }}</p>
+		<form action="" method="post">
+			{% csrf_token %}
+			<input type="hidden" name="quantity" id="quantity" value="value sent">
+			<input type="submit" value="Send value" data-role="button"/>
+		</form>
 		
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>

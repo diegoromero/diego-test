@@ -19,18 +19,10 @@ import time
 # Create your views here.
 def home(request):
     '''Home view with a signin and singup form'''
-    client_id = 'c0'
-    if 'bill_n' not in request.session:
-        dao.new_bill(client_id)
-        bills = dao.get_bills(client_id)
-        bills %= 10000
-        request.session['bill_n'] = bills
-
-    request.session.set_expiry(0)
-    expire = []
-    expire.append(request.session.get_expiry_date())
-    expire.append(request.session.get_expiry_age())
-    expire.append(request.session.get_expire_at_browser_close())
+    if 'quantity' in request.POST:
+        val = dao.new_value(request.POST['quantity'])
+        Screen.see(val)
+        
     
     return render(request, 'home_index.html',
                   {'title': 'Welcome',                   
@@ -58,6 +50,16 @@ class MySseEvents(BaseSseView):
             self.sse.add_message('date', unicode(now()))
             time.sleep(1)
             yield
+
+class Screen(BaseSseView):
+    def sse(self, value):
+        self.sse.add_message('test', value)
+    '''
+    def iterator(self):
+        while True:
+            self.sse.add_message('test', unicode(now()))
+            time.sleep(1)
+            yield'''
 
 
 ####################
