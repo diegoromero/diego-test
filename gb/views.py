@@ -6,13 +6,15 @@ from settings import dao
 from models import Document
 from forms import DocumentForm
 
+from django.http import HttpResponse
+
 import os
 
 def home(request):
     return render(request, 'index.html', {})
 
 def stream(request):
-    return 'stream'
+    return HttpResponse('stream')
 
 ####################
 # Helper functions #
