@@ -10,17 +10,14 @@
     <script type="text/javascript">
 		var count = 0;
 		(function poll(){
-			$.ajax({
-				url: 'stream/',
-				success: function(data){
+			setTimeout(function(){
+				$.ajax({ url: "stream/", success: function(data){
 					count++;
 					$('#count').text(count);
-					console.log(data);
-				},
-				dataType: 'json',
-				complete: poll,
-				timeout: 30000
-			});
+					//Setup the next poll recursively
+					poll();
+				}, dataType: "json"});
+			}, 30000);
 		})();
     </script>
 </html>
