@@ -4,7 +4,5 @@ from django.conf.urls.static import static
 from gb import views
 
 urlpatterns = patterns('',
-    # index page.
-    url(r'^$', views.index),
-
+    url(r'^$', views.home),
 )

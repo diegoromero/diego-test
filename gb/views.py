@@ -8,8 +8,8 @@ from forms import DocumentForm
 
 import os
 
-def index(request):
-    render(request, 'index.html' {})
+def home(request):
+    render(request, 'index.html', {})
 
 ####################
 # Helper functions #
