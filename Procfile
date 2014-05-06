@@ -1,1 +1,1 @@
-web: gunicorn_django -b 0.0.0.0:\$PORT -w 9 -k gevent --max-requests 250 --preload hellodjango/settings.py
+web: gunicorn hellodjango.wsgi -c config/gunicorn -w 9 -k gevent --max-requests 250
