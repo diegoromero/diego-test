@@ -9,6 +9,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript">
 		var count = 0;
+		/*
 		(function poll(){
 			setTimeout(function(){
 				$.ajax({ url: "stream/", success: function(data){
@@ -18,6 +19,13 @@
 					poll();
 				}});
 			}, 30000);
+		})();*/
+		
+		(function poll(){
+			$.ajax({ url: "stream/", success: function(data){
+				count++;
+				$('#count').text(count);
+			}, complete: poll, timeout: 30000 });
 		})();
     </script>
 </html>
