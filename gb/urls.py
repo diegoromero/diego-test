@@ -24,11 +24,11 @@ urlpatterns = patterns('',
 
     # sample views that sends events in the channel course-state.
     url(r'^start-course/(?P<course_id>\d+)/$',
-        'views.start_course', name='start_course'),
+        'gb.views.start_course', name='start_course'),
     url(r'^stop-course/(?P<course_id>\d+)/$',
-        'views.stop_course', name='stop_course'),
+        'gb.views.stop_course', name='stop_course'),
     url(r'^course-state/(?P<course_id>\d+)/$',
-        'views.course_state', name='course_state'),
+        'gb.views.course_state', name='course_state'),
 
     # event stream - course-state.
     url(r'^course-state-stream/(?P<channel_extension>[\w]+)/$',
