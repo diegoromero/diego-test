@@ -11,6 +11,9 @@ import os
 def home(request):
     return render(request, 'index.html', {})
 
+def stream(request):
+    return 'stream'
+
 ####################
 # Helper functions #
 ####################

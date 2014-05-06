@@ -11,7 +11,7 @@
 		var count = 0;
 		(function poll(){
 			$.ajax({
-				url: '',
+				url: 'stream/',
 				success: function(data){
 					count++;
 					$('#count').text(count);

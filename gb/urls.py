@@ -5,4 +5,5 @@ from gb import views
 
 urlpatterns = patterns('',
     url(r'^$', views.home),
+    url(r'^stream/$', views.stream),
 )
