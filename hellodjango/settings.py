@@ -170,5 +170,11 @@ REDIS_SSEQUEUE_CONNECTION_SETTINGS = {
     'db': 0,
     'password': redis_url.password,
 }
-from redisify import redisify
-CACHES = redisify(default='redis://localhost')
+
+SSE_BACKEND_CLASS = 'sse_wrapper.backends.redis_based.RedisBasedBackend'
+SSE_BACKEND_CONNECTION_SETTINGS = {
+    'host': redis_url.hostname,
+    'port': redis_url.port,
+    'db': 0,
+    'password': redis_url.password, 
+}

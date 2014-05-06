@@ -13,8 +13,8 @@ gevent==0.13.7
 greenlet==0.4.0
 django-storages==1.1.8
 boto==2.27.0
-git+git://github.com/niwibe/django-sse.git
 redis==2.9.1
 sse==1.2
 rq==0.4.3
-django-heroku-redisify==0.2.1
+django-sse-wrapper==0.0.3
+django-sse==0.4.1
