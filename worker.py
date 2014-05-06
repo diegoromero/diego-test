@@ -8,7 +8,7 @@ listen = ['high', 'default', 'low']
 
 redis_url = urlparse.urlparse(os.environ.get('REDISCLOUD_URL'))
 
-conn = redis.from_url(redis_url)
+conn = redis.Redis(host=redis_url.hostname, port=redis_url.port, db=0, password=redis_url.password)
 
 if __name__ == '__main__':
     with Connection(conn):
