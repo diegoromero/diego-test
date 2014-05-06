@@ -9,7 +9,7 @@ from forms import DocumentForm
 import os
 
 def home(request):
-    render(request, 'index.html', {})
+    return render(request, 'index.html', {})
 
 ####################
 # Helper functions #
