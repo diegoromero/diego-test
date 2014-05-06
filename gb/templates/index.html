@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Sample Application</title>
-		{% load staticfiles %}
+        <title>INDEX</title>
     </head>
     <body>
-        <h1>This page shows the current course state</h1>
-        <span>Current state is:</span> <span id="current-course-state"></span>
-        <button id="start-button">Start course</button>
-        <button id="stop-button">Stop course</button>
+        <p id="count">0<p>
     </body>
-    <script type="text/javascript" src="{% static 'js/lib/jquery-1.10.2.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/lib/klass.min.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/course.js' %}"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            var courseController = new course.CourseController({
-                courseStreamURL: "{% url 'course_state_stream' channel_extension='1' %}",
-                courseStateURL: "{% url 'course_state' course_id=1 %}",
-                courseStartURL: "{% url 'start_course' course_id=1 %}",
-                courseStopURL: "{% url 'stop_course' course_id=1 %}",
-            });
-        });
+		var count = 0;
+		(function poll(){
+			$.ajax({
+				url: '',
+				success: function(data){
+					count++;
+					$('#count').text(count);
+				},
+				dataType: 'json',
+				complete: poll,
+				timeout: 30000
+			});
+		})();
     </script>
 </html>

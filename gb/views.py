@@ -8,71 +8,8 @@ from forms import DocumentForm
 
 import os
 
-from django.shortcuts import render_to_response
-from django.views.generic import View
-from django.template import RequestContext
-from django.utils.timezone import now
-
-from django_sse.views import BaseSseView
-from django_sse.redisqueue import RedisQueueView, send_event
-
-from django.http import HttpResponse
-
-from sse_wrapper.events import send_event
-
-import time
-
-def start_course(request, course_id):
-    send_event('state', 'started', 'course-state/%s' % course_id)
-    return HttpResponse('Course started!')
-
-
-def stop_course(request, course_id):
-    send_event('state', 'stopped', 'course-state/%s' % course_id)
-    return HttpResponse('Course stopped!')
-
-
-def course_state(request, course_id):
-    # this would bring the info from database, for example.
-    return HttpResponse('stopped')
-
-
-
-# Create your views here.
-def home(request):
-    '''Home view with a signin and singup form'''
-    if 'quantity' in request.POST:
-        val = dao.new_value(request.POST['quantity'])
-        send_event('test', str(val), 'sse_%s' % 'screen')
-        
-    
-    return render(request, 'home_index.html',
-                  {})
-
-class Home1(View):
-    def get(self, request):
-        return render_to_response('home.html', {},
-                    context_instance=RequestContext(request))
-
-class Home2(View):
-    def get(self, request):
-        return render_to_response('home2.html', {},
-                    context_instance=RequestContext(request))
-
-def Home3(request):
-    return render(request, 'home3.html', {})
-
-class MySseEvents(BaseSseView):
-    def iterator(self):
-        while True:
-            self.sse.add_message('date', unicode(now()))
-            time.sleep(1)
-            yield
-
-class Screen(RedisQueueView):
-    def get_redis_channel(self):
-        return 'sse_%s' % 'screen'
-
+def index(request):
+    render(request, 'index.html' {})
 
 ####################
 # Helper functions #
