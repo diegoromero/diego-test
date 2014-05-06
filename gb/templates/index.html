@@ -1,42 +1,26 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>SSE test</title>
-		{% load staticfiles %}
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script src="{% static 'js/eventsource.js' %}"></script>
-	</head>
-	<body>
-		<p>SSE test</p>
-		<script>
-			$().ready(function() {
-			  var source = new EventSource('/sse/'); // of course this must match the endpoint in your urlconf
+    <head>
+        <title>Sample Application</title>
+    </head>
+    <body>
+        <h1>This page shows the current course state</h1>
+        <span>Current state is:</span> <span id="current-course-state"></span>
+        <button id="start-button">Start course</button>
+        <button id="stop-button">Stop course</button>
+    </body>
 
-			  function log() {
-				console.log(arguments);
-			  }
-
-			  source.onopen = function() {
-				console.log(arguments);
-			  };
-
-			  source.onerror = function () {
-				console.log(arguments);
-			  };
-
-			  source.addEventListener('connections', log, false);
-			  source.addEventListener('requests', log, false);
-			  source.addEventListener('myevent', function(e) {
-				data = JSON.parse(e.data);
-				// .. do something..
-			  }, false);
-			  source.addEventListener('uptime', log, false);
-
-			  source.onmessage = function() {
-				console.log(arguments);
-			  };
-			});
-
-		</script>
-	</body>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/lib/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/lib/klass.min.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}/js/course.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var courseController = new course.CourseController({
+                courseStreamURL: "{% url 'course_state_stream' channel_extension='1' %}",
+                courseStateURL: "{% url 'course_state' course_id=1 %}",
+                courseStartURL: "{% url 'start_course' course_id=1 %}",
+                courseStopURL: "{% url 'stop_course' course_id=1 %}",
+            });
+        });
+    </script>
 </html>

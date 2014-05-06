@@ -20,15 +20,15 @@ urlpatterns = patterns('',
 
     # index page.
     url(r'^$', TemplateView.as_view(
-        template_name='example/index.html'), name='index'),
+        template_name='index.html'), name='index'),
 
     # sample views that sends events in the channel course-state.
     url(r'^start-course/(?P<course_id>\d+)/$',
-        'example.views.start_course', name='start_course'),
+        'views.start_course', name='start_course'),
     url(r'^stop-course/(?P<course_id>\d+)/$',
-        'example.views.stop_course', name='stop_course'),
+        'views.stop_course', name='stop_course'),
     url(r'^course-state/(?P<course_id>\d+)/$',
-        'example.views.course_state', name='course_state'),
+        'views.course_state', name='course_state'),
 
     # event stream - course-state.
     url(r'^course-state-stream/(?P<channel_extension>[\w]+)/$',
