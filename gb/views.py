@@ -13,10 +13,10 @@ from django.views.generic import View
 from django.template import RequestContext
 from django.utils.timezone import now
 
-#from django_sse.views import BaseSseView
-#from django_sse.redisqueue import RedisQueueView, send_event
-from sseviews import BaseSseView
-from redisqueue import RedisQueueView, send_event
+from django_sse.views import BaseSseView
+from django_sse.redisqueue import RedisQueueView, send_event
+#from sseviews import BaseSseView
+#from redisqueue import RedisQueueView, send_event
 import time
 
 # Create your views here.
