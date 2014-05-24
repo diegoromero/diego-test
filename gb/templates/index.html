@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Business.Co</title>
+<title>Geekbar</title>
 {% load staticfiles %}
 <meta charset="utf-8">
 <link rel="stylesheet" href="{% static 'css/reset.css' %}" type="text/css" media="all">
@@ -22,7 +22,7 @@
     <div class="main">
       <!-- header -->
       <header>
-        <h1><a href="index.html" id="logo">Business.Co Best Solutions For You</a></h1>
+        <h1><a href="index.html" id="logo">Geekbar Best Solutions For You</a></h1>
       </header>
       <!-- / header -->
       <!-- content -->
@@ -47,26 +47,6 @@
                 </div>
               </li>
               <li id="page_2">
-                <div class="text">Latest News</div>
-                <div class="cont">
-                  <div class="wrapper">
-                    <figure class="left marg_right1"><a href="#"><img src="images/page2_img1.jpg" alt=""></a></figure>
-                    <p class="pad_top1"> <strong>18.04.</strong> <a href="#" class="link1">Lorem ipsum dolor sit amet</a><br>
-                      Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation. </p>
-                  </div>
-                  <div class="wrapper">
-                    <figure class="left marg_right1"><a href="#"><img src="images/page2_img2.jpg" alt=""></a></figure>
-                    <p class="pad_top1"> <strong>13.04.</strong> <a href="#" class="link1">Ullamco laboris nisiut</a><br>
-                      Aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p>
-                  </div>
-                  <div class="wrapper">
-                    <figure class="left marg_right1"><a href="#"><img src="images/page2_img3.jpg" alt=""></a></figure>
-                    <p class="pad_top1"> <strong>07.04.</strong> <a href="#" class="link1">Excepteur sint occaecat cupidatat</a><br>
-                      Non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium. </p>
-                  </div>
-                </div>
-              </li>
-              <li id="page_3">
                 <div class="text">Our Services</div>
                 <div class="cont">
                   <div class="wrapper">
@@ -97,29 +77,7 @@
                   </div>
                 </div>
               </li>
-              <li id="page_4">
-                <div class="text">Products</div>
-                <div class="cont">
-                  <div class="wrapper pad_top1">
-                    <article class="cols">
-                      <figure class="pad_bot2 pad_top1"> <a href="#"><img src="images/page4_img1.jpg" alt=""></a> </figure>
-                      <p class="pad_bot1"><a href="#" class="link1">Product 1</a></p>
-                      <p>Minim veniam, quis nostrud exerciioliquip ex ea commodo coni sequatirure dolor in repre minim.</p>
-                    </article>
-                    <article class="cols pad_left1">
-                      <figure class="pad_bot2 pad_top1"> <a href="#"><img src="images/page4_img2.jpg" alt=""></a> </figure>
-                      <p class="pad_bot1"><a href="#" class="link1">Product 2</a></p>
-                      <p>Noderit in voluptate velit esse cillum in dolore eu fugiat nulla pariatur. Non proident sunt.</p>
-                    </article>
-                    <article class="cols pad_left1">
-                      <figure class="pad_bot2 pad_top1"> <a href="#"><img src="images/page4_img3.jpg" alt=""></a> </figure>
-                      <p class="pad_bot1"><a href="#" class="link1">Product 3</a></p>
-                      <p>Minim veniam, quis nostrud exerciioliquip ex ea commodo coni sequatirure dolor in repre minim.</p>
-                    </article>
-                  </div>
-                </div>
-              </li>
-              <li id="page_5">
+              <li id="page_3">
                 <div class="text">Contact Us</div>
                 <div class="cont">
                   <form id="ContactForm" action="#">
@@ -158,12 +116,12 @@
       <footer>
         <div class="wrapper">
           <ul id="icons">
-            <li><a href="#" class="normaltip"><img src="images/icon1.png" alt=""></a></li>
-            <li><a href="#" class="normaltip"><img src="images/icon2.png" alt=""></a></li>
-            <li><a href="#" class="normaltip"><img src="images/icon3.png" alt=""></a></li>
-            <li><a href="#" class="normaltip"><img src="images/icon4.png" alt=""></a></li>
-            <li><a href="#" class="normaltip"><img src="images/icon5.png" alt=""></a></li>
-            <li><a href="#" class="normaltip"><img src="images/icon6.png" alt=""></a></li>
+            <li><a href="#" class="normaltip"><img src="{% static 'images/icon1.png' %}" alt=""></a></li>
+            <li><a href="#" class="normaltip"><img src="{% static 'images/icon2.png' %}" alt=""></a></li>
+            <li><a href="#" class="normaltip"><img src="{% static 'images/icon3.png' %}" alt=""></a></li>
+            <li><a href="#" class="normaltip"><img src="{% static 'images/icon4.png' %}" alt=""></a></li>
+            <li><a href="#" class="normaltip"><img src="{% static 'images/icon5.png' %}" alt=""></a></li>
+            <li><a href="#" class="normaltip"><img src="{% static 'images/icon6.png' %}" alt=""></a></li>
           </ul>
         </div>
         Copyright &copy; <a href="#">Domain Name</a> All Rights Reserved<br>
